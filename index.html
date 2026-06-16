@@ -1,33 +1,127 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход в Roblox</title>
+    <title>Roblox — Login</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background: #0b0e17; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .login-box { background: #1a1f2e; border-radius: 12px; padding: 40px 30px; max-width: 420px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-        .logo { text-align: center; margin-bottom: 24px; }
-        .logo svg { width: 120px; height: auto; }
-        h2 { color: #fff; font-size: 28px; font-weight: 400; margin-bottom: 20px; text-align: center; }
-        label { color: #b0b0b0; font-size: 14px; display: block; margin-bottom: 4px; }
-        input { width: 100%; padding: 14px; margin-bottom: 16px; background: #2a2f45; border: 1px solid #3b405a; border-radius: 8px; color: #fff; font-size: 16px; }
-        input:focus { outline: none; border-color: #7b68ee; }
-        button { width: 100%; padding: 14px; background: #7b68ee; border: none; border-radius: 8px; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; margin-bottom: 16px; }
-        button:hover { background: #6a5acd; }
-        .links { text-align: center; font-size: 13px; color: #7b68ee; margin-bottom: 12px; }
-        .links a { color: #7b68ee; text-decoration: none; display: inline-block; margin: 4px 0; }
-        .links a:hover { text-decoration: underline; }
-        .divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: #555; font-size: 13px; }
-        .divider hr { flex: 1; border: none; border-top: 1px solid #2a2f45; }
-        .quick-login { background: #2a2f45; border-radius: 8px; padding: 12px; color: #b0b0b0; font-size: 14px; text-align: center; margin-bottom: 16px; cursor: pointer; }
-        .quick-login:hover { background: #3b405a; }
-        .footer { text-align: center; color: #555; font-size: 12px; margin-top: 16px; }
-        .footer span { color: #7b68ee; }
-        .error { color: #ff6b6b; margin-bottom: 12px; display: none; text-align: center; font-size: 14px; }
-        .saved-pass { background: #1a1f2e; border: 1px solid #2a2f45; border-radius: 6px; padding: 8px 12px; color: #888; font-size: 13px; display: flex; justify-content: space-between; margin-bottom: 16px; }
-        .saved-pass span { color: #aaa; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        body {
+            background: #0b0e17;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .login-box {
+            background: #1a1f2e;
+            border-radius: 12px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .logo svg {
+            width: 120px;
+            height: auto;
+        }
+        h2 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        label {
+            color: #b0b0b0;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            background: #2a2f45;
+            border: 1px solid #3b405a;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #7b68ee;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #7b68ee;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+        button:hover {
+            background: #6a5acd;
+        }
+        .links {
+            text-align: center;
+            font-size: 13px;
+            color: #7b68ee;
+            margin-bottom: 12px;
+        }
+        .links a {
+            color: #7b68ee;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 0;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            color: #555;
+            font-size: 12px;
+            margin-top: 16px;
+        }
+        .footer span {
+            color: #7b68ee;
+        }
+        .error {
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            display: none;
+            text-align: center;
+            font-size: 14px;
+        }
+        .saved-pass {
+            background: #1a1f2e;
+            border: 1px solid #2a2f45;
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #888;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .saved-pass span {
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
@@ -58,10 +152,8 @@
         <a href="#">Отправьте мне одноразовый код по электронной почте</a>
     </div>
 
-    <div class="quick-login">🔑 Быстрый вход</div>
-
     <div class="saved-pass">
-        <span>🔐 Пароль от <strong>sosiska67148869</strong> сохранён в приложении</span>
+        <span>🔐 Пароль от <strong>vet8e35</strong> сохранён</span>
         <span>✖</span>
     </div>
 
@@ -97,5 +189,6 @@
         }, 1500);
     };
 </script>
+
 </body>
 </html>
